@@ -32,6 +32,7 @@ device or screen size.
 9. The app should provide schema.sql and data.sql as the default schema and sample 
 data to initialize the database for testing.
 10. The programs should have proper comments to explain the code.
+
 Advanced Requirements:
 1. Limit each page to display 5 items and provide pagination for more items.
 2. Support offline mode. Save to-do items in the client’s local storage and synchronise
