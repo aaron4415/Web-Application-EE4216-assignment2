@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+ <style>
+        .form-outline  { display : flex }
+        .showCompletedButton {
+     display: block;
+  width: 100%;
+  border: none;
+  
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+.pagination {
+    margin: auto;
+  width: 60%;
+ 
+  padding: 10px;
+  display: inline-block;
+}
+
+.pagination a {
+    
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.pagination a:hover:not(.active) {background-color: #ddd;}
+    </style>
+<html>
+   
+    <head>
+        <meta charset="UTF-8">
+        <title>To-Do List</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+    </head>
+   
+    <body>
+        <div id="app" class="container">
+        <p>Connected Status : {{connectionStatus}}</p>
+ <section class="vh-100" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card rounded-3">
+          <div class="card-body p-4">
+<button type='button' v-on:click.prevent="logout()"  class="btn btn-primary btn-sm">Logout</button>
+            <h4 class="text-center my-3 pb-3">To-Do List</h4>
+
+            <form class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
+              <div class="col-12">
+                <div class="form-outline">
+                  <input v-model="message" placeholder="Enter a task here"class="form-control" />
+                 <button type='button' v-on:click.prevent="createItem()"  class="btn btn-primary btn-sm">Add</button>
+                </div>
+              </div>
+ <div class="showCompletedButton">
+              <button  type='button' v-on:click="isHideCompletedItem()" class="btn btn-info">{{showcompletedItemButton}}</button>
+  </div>
+              <div class="col-12">
+                
+ 
+              </div>
+
+             
+            </form>
+
+            <table class="table mb-4">
+              <thead>
+                <tr>
+                
+                  <th scope="col">Todo item</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+               <tbody>
+                   
+                    <tr v-for="row in displayRows">
+       
+                        <td>{{row['name']}}</td>
+     
+                        <td>{{row['state']}}</td>
+                 
+                       
+                             <td v-if="row.state == compeledState">
+                            <button v-on:click.prevent="updateRows(row)"  class="btn btn-primary btn-sm">completed</button>
+                             <button v-on:click.prevent="deleteRows(row)"  class="btn btn-danger btn-sm">Delete</button>
+                        </td>
+                        
+                        <td v-else> <button v-on:click.prevent="updateRows(row)"  class="btn btn-primary btn-sm">pending</button>
+                         <button v-on:click.prevent="deleteRows(row)"  class="btn btn-danger btn-sm">Delete</button></td>
+                           
+                           
+                           
+                       
+                    
+                      
+                        
+                        
+                    </tr>
+                     
+                </tbody>
+            </table>
+<div class="pagination " id="paginationBar">
+  
+</div>
+        
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+            
+           
+  
+
+           </div>  
+       
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
+
+
